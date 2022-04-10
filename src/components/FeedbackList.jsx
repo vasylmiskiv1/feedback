@@ -4,7 +4,7 @@ import FeedbackItem from "./FeedbackItem"
 export default function FeedbackList({ feedback, handleDelete }) {
   return (
     <>
-    {feedback ? (
+    {feedback.length ? (
       <div className="feedack-list">
         {feedback.map((item) => (
           <>
@@ -17,7 +17,7 @@ export default function FeedbackList({ feedback, handleDelete }) {
         ))}
       </div>
     ) : 
-    (<h3>No feedback yet</h3>)}
+    (<h2 className='feeback-list__empty'>No feedback yet &#x1F642;</h2>)}
     </>
   )
 }
