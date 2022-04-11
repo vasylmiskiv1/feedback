@@ -1,12 +1,14 @@
 import React from 'react'
 import Card from './shared/Card'
 import Button from './shared/Button'
+import RatingSelect from './RatingSelect'
 
 import { useState } from 'react'
 
 export default function FeedbackForm() {
   const [text, setText] = useState('')
   const [btnDisabled, setBtnDisabled] = useState(true)
+  const [rating, setRating] = useState(5)
   const [message, setMessage] = useState(' ')
 
   const handleTextChange = e => {
@@ -28,7 +30,7 @@ export default function FeedbackForm() {
     <Card>
       <form action="#">
         <h2>How would you rate our service?</h2>
-        {/* todoo rating select compoenent */}
+        <RatingSelect select={(rating) => setRating(rating)}/> 
         <div className="input-group">
           <input 
             onChange={handleTextChange}
