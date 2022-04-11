@@ -25,7 +25,7 @@ Header.defaultProps = {
   spanText: 'Feed',
   text: 'back',
   bgColor: '#0c0c16',
-  spanColor: '#c0c0c0',
+  spanColor: '#f4f4f4',
   textColor: '#ff6a95',
 }
 

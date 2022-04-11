@@ -5,18 +5,18 @@ import RatingSelect from './RatingSelect'
 
 import { useState } from 'react'
 
-export default function FeedbackForm() {
+export default function FeedbackForm({ handleAdd }) {
   const [text, setText] = useState('')
   const [btnDisabled, setBtnDisabled] = useState(true)
   const [rating, setRating] = useState(5)
-  const [message, setMessage] = useState(' ')
+  const [message, setMessage] = useState('')
 
   const handleTextChange = e => {
     if(text === '') {
       setBtnDisabled(true)
       setMessage(null)
     } else if(text !== '' && text.trim().length <= 10) {
-      setMessage('Text must be at least 10 characters')
+      setMessage(`Text must be at least ${10 - text.length + 1} characters`)
       setBtnDisabled(true)
     } else {
       setMessage(null)
@@ -26,9 +26,22 @@ export default function FeedbackForm() {
     setText(e.target.value)
   }
 
+  const handleSubmmit = (e) => {
+    e.preventDefault()
+    if(text.trim().length > 10) {
+      const newFeedback = {
+        text,
+        rating
+      }
+
+      handleAdd(newFeedback)
+      setText('')
+    }
+  }
+
   return (
     <Card>
-      <form action="#">
+      <form action="#" onSubmit={handleSubmmit}>
         <h2>How would you rate our service?</h2>
         <RatingSelect select={(rating) => setRating(rating)}/> 
         <div className="input-group">
