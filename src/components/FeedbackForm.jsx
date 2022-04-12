@@ -8,7 +8,7 @@ import { useState } from 'react'
 export default function FeedbackForm({ handleAdd }) {
   const [text, setText] = useState('')
   const [btnDisabled, setBtnDisabled] = useState(true)
-  const [rating, setRating] = useState(5)
+  const [rating, setRating] = useState(null)
   const [message, setMessage] = useState('')
 
   const handleTextChange = e => {
