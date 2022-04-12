@@ -3,13 +3,20 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import { useState } from 'react';
 import Header from './components/Header';
 
+// import data
 import FeedbackData from './data/FeedbackData';
+
+// import components
 import FeedbackList from './components/FeedbackList';
 import FeedbackStats from './components/FeedbackStats';
 import FeedbackForm from './components/FeedbackForm';
 import AboutIconLink from './components/AboutIconLink';
 
+// import pages
 import AboutPage from './pages/AboutPage';
+
+// import global state store hook API
+import {FeedbackProvider} from './context/FeedbackContext'
 
 
 function App () {
@@ -29,28 +36,28 @@ function App () {
   }
 
   return (
-    <Router>
-      
-      <Header />
-      <div className='container'>
-        <Routes>
-          <Route exact path='/' element={
-          <>
-            <FeedbackForm handleAdd={addFeedback} />
-            <FeedbackStats feedback={feedback} />
-            <FeedbackList 
-              feedback ={feedback}
-              handleDelete={deleteFeedback}
-            />
-          </>
-          }
-          ></Route>
-
-          <Route path='about' element={<AboutPage />} />
-        </Routes>
-      </div>
-      <AboutIconLink />
-    </Router>
+    <FeedbackProvider>
+        <Router>
+          <Header />
+          <div className='container'>
+            <Routes>
+              <Route exact path='/' element={
+              <>
+                <FeedbackForm handleAdd={addFeedback} />
+                <FeedbackStats feedback={feedback} />
+                <FeedbackList 
+                  feedback ={feedback}
+                  handleDelete={deleteFeedback}
+                />
+              </>
+              }
+              ></Route>
+              <Route path='about' element={<AboutPage />} />
+            </Routes>
+          </div>
+          <AboutIconLink />
+        </Router>
+      </FeedbackProvider>
   )
 }
 
