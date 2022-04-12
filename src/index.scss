@@ -9,6 +9,7 @@ $white-color: #fff;
 }
 
 body {
+  height: 100vh;
   font-family: 'Poppins', sans-serif;
   background-color: #202142;
   color: $white-color;
@@ -188,14 +189,15 @@ input:focus {
 .message {
   padding-top: 10px;
   text-align: center;
-  color: rebeccapurple;
 }
 
 /* FIX: Remove position: absolute to keep about icon at the bottom of the
  * document */
 .about-link {
-  display: flex;
-  justify-content: flex-end;
+  position: fixed;
+  bottom: 60px;
+  right: 90px;
+
 }
 
 /* FIX: Remove position: absolute to keep about icon at the bottom of the
