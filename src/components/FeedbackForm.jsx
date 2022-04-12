@@ -1,18 +1,24 @@
-import React from 'react'
+import { useState, useContext } from 'react'
+
+// re-use elements
 import Card from './shared/Card'
 import Button from './shared/Button'
+
 import RatingSelect from './RatingSelect'
 
-import { useState } from 'react'
+// global state
+import FeedbackContext from '../context/FeedbackContext'
 
-export default function FeedbackForm({ handleAdd }) {
+export default function FeedbackForm() {
   const [text, setText] = useState('')
   const [btnDisabled, setBtnDisabled] = useState(true)
-  const [rating, setRating] = useState(null)
+  const [rating, setRating] = useState(5)
   const [message, setMessage] = useState('')
 
+  const {addFeedback} = useContext(FeedbackContext)
+
   const handleTextChange = e => {
-    if(text === '') {
+    if(text === '')  {
       setBtnDisabled(true)
       setMessage(null)
     } else if(text !== '' && text.trim().length <= 10) {
@@ -34,10 +40,11 @@ export default function FeedbackForm({ handleAdd }) {
         rating
       }
 
-      handleAdd(newFeedback)
+      addFeedback(newFeedback)
       setText('')
     }
   }
+
 
   return (
     <Card>
