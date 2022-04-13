@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 
 // re-use elements
 import Card from './shared/Card'
@@ -15,8 +15,16 @@ export default function FeedbackForm() {
   const [rating, setRating] = useState(5)
   const [message, setMessage] = useState('')
 
-  const {addFeedback} = useContext(FeedbackContext)
+  const { addFeedback, feedbackEdit, updateFeedback } = useContext(FeedbackContext)
 
+  useEffect(() => {
+    if(feedbackEdit.edit === true) {
+      setBtnDisabled(false)
+      setText(feedbackEdit.item.text)
+      setRating(feedbackEdit.item.rating)
+    }
+  }, [feedbackEdit]) 
+ 
   const handleTextChange = e => {
     if(text === '')  {
       setBtnDisabled(true)
@@ -40,7 +48,12 @@ export default function FeedbackForm() {
         rating
       }
 
-      addFeedback(newFeedback)
+      if(feedbackEdit.edit === true) {
+        updateFeedback(feedbackEdit.item.id, newFeedback)
+      } else {
+        addFeedback(newFeedback)
+      }
+
       setText('')
     }
   }
