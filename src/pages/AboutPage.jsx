@@ -11,7 +11,7 @@ export default function AboutPage() {
         <p>Version: 1.0.0</p>
 
         <p>
-          <Link to='/'>Back to home</Link>
+          <Link className='about-page__home-link' to='/'>Back to home</Link>
         </p>
       </div>
     </Card>

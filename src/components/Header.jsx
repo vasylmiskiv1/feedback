@@ -7,14 +7,24 @@ function Header({ spanText, text, bgColor, spanColor, textColor }) {
     color: textColor,
   }
 
+  const linkHeaderStyles = {
+    color: textColor,
+    textDecoration: 'none',
+  }
+
   const spanStyles = {
     color: spanColor,
   }
 
+
   return (
     <header style={headerStyles}>
       <div className="container">
-        <h2><span style={spanStyles}>{spanText}</span>{text}</h2>
+        <h2>
+          <a href="/" style={linkHeaderStyles}>
+            <span style={spanStyles}>{spanText}</span>{text}
+          </a>
+        </h2>
       </div>
     </header>
   )

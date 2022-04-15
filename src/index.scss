@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 $white-color: #fff;
+$secondary-color: #ff6a95;
 
 * {
   box-sizing: border-box;
@@ -90,7 +91,7 @@ header {
 
 .rating li:hover,
 .num-display {
-  background: #ff6a95;
+  background: $secondary-color;
   color: $white-color;
 }
 
@@ -99,7 +100,7 @@ header {
 }
 
 [type='radio']:checked ~ label {
-  background: #ff6a95;
+  background: $secondary-color;
   color: $white-color;
 }
 
@@ -169,7 +170,7 @@ input:focus {
 }
 
 .btn-secondary {
-  background: #ff6a95;
+  background: $secondary-color;
 }
 
 .btn:hover {
@@ -209,7 +210,7 @@ input:focus {
 }
 
 .about-link a:hover {
-  color: #ff6a95;
+  color: $secondary-color;
 }
 
 .about h1 {
@@ -218,6 +219,18 @@ input:focus {
 
 .about p {
   margin: 10px 0;
+}
+
+.about-page__home-link {
+  text-decoration: none;
+  color: #000;
+  font-weight: 700;
+  font-size: 18px;
+  transition: 0.2s;
+  
+  &:hover {
+    color: $secondary-color;
+  }
 }
 
 @media (max-width: 600px) {
