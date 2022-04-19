@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 
 function Header({ spanText, text, bgColor, spanColor, textColor }) {
-  // styled
+  // styles
   const headerStyles = {
     backgroundColor: bgColor,
     color: textColor,
