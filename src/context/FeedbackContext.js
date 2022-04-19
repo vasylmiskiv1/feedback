@@ -15,7 +15,7 @@ export const FeedbackProvider = ({ children }) => {
     console.log(fetchFeedback())
   }, [])
 
-// fetch feedback
+// fetch feedback list from db
 const fetchFeedback = async () => {
   const res = await fetch(
     `/feedback?_sort=id&_order=desc`
@@ -31,7 +31,7 @@ const fetchFeedback = async () => {
     const res = await fetch(
       `/feedback`,
       {
-        method: 'post',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -43,19 +43,30 @@ const fetchFeedback = async () => {
       setFeedback([data, ...feedback])
   }
 
-  // Delete from db
-  const deleteFeedback = (id) => {
+  // Delete from server
+  const deleteFeedback = async (id) => {
     if (window.confirm('Are u sure u want to delete?')) {
-      setFeedback(feedback.filter((item) => {
-        return item.id !== id
-      }))
+      await fetch(`/feedback/${id}`, {method: 'delete'})
+      
+      setFeedback(feedback.filter((item) => item.id !== id))
     }
   }
 
   // Update feedback item
-  const updateFeedback = (id, updItem) => {
-    setFeedback(feedback.map((e) => e.id === id ?
-     {...e, ...updItem} : e))
+  const updateFeedback = async (id, updItem) => {
+    const res = await fetch(`/feedback/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      // convert to json
+      body: JSON.stringify(updItem)
+    })
+    // convert to object
+    const data = await res.json()
+
+    setFeedback(feedback.map(item => item.id === id ?
+     {...item, ...data} : item))
   }
 
   // Edit
