@@ -12,7 +12,7 @@ export const FeedbackProvider = ({ children }) => {
   })
 
   useEffect(() => {
-    console.log(fetchFeedback())
+    fetchFeedback()
   }, [])
 
 // fetch feedback list from db
